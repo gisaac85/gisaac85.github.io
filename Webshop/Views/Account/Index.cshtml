@@ -1,0 +1,61 @@
+﻿
+@{
+    Layout = "_LoginLayout";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="~/css/Register.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="~/lib/fontawesome-free-5.15.2-web/css/all.css"></script>
+    <link rel="stylesheet" href="~/css/Register.css" />
+</head>
+<body>
+    
+    <div class="container register">
+        <div>
+          <a  asp-controller="Products" asp-action="Index"><img src="~/images/goahLogo.jpeg" style="width:75px;height:75px;" /></a> 
+        </div>
+        <div class="row">
+            <div class="col-md-3 register-left">
+                <a>
+                    <img src="~/images/logo_register.png" alt="" />
+                    <h3>Welcome in Webshop</h3>
+                    <br />
+                </a>
+                <div class="text-center">
+                    <a asp-controller="Account" asp-action="UserRegister" type="button" class="btn btn-primary btn-lg btn-block btnLogin">Are You New , Register Now!</a>
+                </div>
+            </div>
+
+            <div class="col-md-9 register-right">
+                <h3 class="text-center">Login</h3>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="text-center" style="margin:0 auto;">
+                            <span class="text-danger"><b>@TempData["NotLoggedin"]</b></span>
+                        </div>
+                        @using (Html.BeginForm("UserLogin", "Account", FormMethod.Post))
+                        {
+                            <div class="text-center" style="margin:0 auto;">
+                                <span class="text-danger"><b>@TempData["loginMessage"]</b></span>
+                            </div>
+                            <div class="m-lg-5">
+                                <input type="Email" id="email" name="email" class="form-control" placeholder="Email address" required="" autofocus="">
+                            </div>
+                            <div class="m-lg-5">
+                                <input type="Password" id="inputPassword" name="password" class="form-control" placeholder="Password" required="">
+                            </div>
+                            <div class="m-5 mr-lg-5 ">
+                                <button class="btn btn-primary btn-lg btn-block btnRegister" type="submit">Login</button>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,133 @@
+﻿@model IEnumerable<Core.Dtos.ProductToReturnDto>
+@using Webshop.Models.Enums;
+
+@{
+    ViewData["Title"] = "Webshop";
+}
+
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="mb-4">
+            <nav class="navbar navbar-dark default-color">
+
+                @using (Html.BeginForm("FilterProduct", "Products", FormMethod.Get))
+                {
+                    <select class="form-control-sm" name="filter" onchange="this.form.submit();">
+                        <option selected>Select Filter</option>
+                        <option name="filter" value=2>All</option>
+                        <option name="filter" value=0>Price Low-High </option>
+                        <option name="filter" value=1>Price High-low</option>
+                    </select>
+                }
+
+                @using (Html.BeginForm("SearchProduct", "Products", FormMethod.Get, new { @class = "form-inline my-2 my-lg-0 ml-auto" }))
+                {
+                    <input type="text" name="name" class="form-control" placeholder="Search a Product..." aria-label="Search" />
+                    <input type="submit" value="Search" class="btn btn-outline-dark btn-md my-2 my-sm-0 ml-3" />
+                }
+                @using (Html.BeginForm("Index", "Products", FormMethod.Get))
+                {
+                    <input type="submit" value="Reset" class="btn btn-outline-danger btn-md my-2 my-sm-0 ml-3" />
+                }
+
+            </nav>
+            @if (TempData.ContainsKey("message"))
+            {
+                <div class="d-flex justify-content-center">
+                    <div class="alert alert-success mb-1 mt-3 w-50 text-center" role="alert">
+                        @TempData["message"]
+                    </div>
+                </div>
+
+            }
+
+            @if (TempData.ContainsKey("Error"))
+            {
+                <div class="d-flex justify-content-center">
+                    <div class="alert alert-danger mb-1 mt-3 w-50 text-center" role="alert">
+                        @TempData["Error"]
+                    </div>
+                </div>
+            }
+
+        </div>
+
+        <div class="row">
+
+            @if (Model != null)
+            {
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-4">
+                        <div class="card mb-4 box-shadow">
+                            <div class="hovereffect">
+                                <div id="imgs">
+                                    <img class="img-responsive img-custom" src="@item.PictureUrl" alt="Thumbnail [100%x225]">
+                                </div>
+                                <div class="overlay">
+                                    <h2>@item.Name</h2>
+                                    <a onclick="passUrl(`@item.PictureUrl`)" class="info" href="#editModal" data-toggle="modal">INFO</a>
+
+                                    @using (Html.BeginForm("AddToBasket", "Basket", FormMethod.Post, new { @class = "info" }))
+                                    {
+                                        <input type="hidden" name="id" value="@item.Id" />
+                                        <input type="hidden" name="Name" value="@item.Name" />
+                                        <input type="hidden" name="Price" value="@item.Price" />
+                                        <input type="hidden" name="PictureUrl" value="@item.PictureUrl" />
+                                        <input type="hidden" name="ProductBrand" value="@item.ProductBrand" />
+                                        <input type="hidden" name="ProductType" value="@item.ProductType" />
+                                        <input type="submit" class="add-to-cart" value="ADD TO CART" />
+                                    }
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">@item.Description</p>
+                                <p class="card-text">@String.Format("{0:c2}", item.Price)</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <small class="text-muted">@item.ProductBrand</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Edit Modal Html-->
+                    <div id="editModal" class="modal fade">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <form method="post" asp-controller="Products" asp-action="GetProductByProductId">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title w-100 text-center">Product Details</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    </div>
+                                    <div class="modal-body w-100 text-center form-horizontal">
+                                        <div class="mb-4 box-shadow">
+                                            <div class="img-container">
+                                                @Html.HiddenFor(model => item.Id)
+                                                <img id="modalImage" class="mx-auto d-block image-size" data-src="@item.PictureUrl" alt="@item.Name"
+                                                     src="@item.PictureUrl" data-holder-rendered="true">
+                                                <div class="card-body">
+                                                    <p class="card-text">@item.Description</p>
+                                                    <p class="card-text">@String.Format("{0:c2}", item.Price)</p>
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <p>@TempData["Error"]</p>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/modal.js" asp-append-version="true"></script>
+}

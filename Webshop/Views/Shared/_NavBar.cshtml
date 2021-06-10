@@ -1,0 +1,92 @@
+﻿<!-- Navbar -->
+@using System.Web;
+@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor httpContextAcc;
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+
+    <a class="navbar-brand" asp-controller="Products" asp-action="Index">
+        <img src="~/images/goahLogo.jpeg" height="50" alt="mdb logo">&nbsp;&nbsp;&nbsp;
+        <span class="nav-item">WebShop</span>
+    </a>
+
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav1"
+            aria-controls="basicExampleNav1" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- Breadcrumbs -->
+    <!-- Links -->
+    <div class="collapse navbar-collapse" id="basicExampleNav1">
+
+        <!-- Right -->
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a asp-controller="Basket" asp-action="Index" class="nav-link navbar-link-2 waves-effect">
+                    <span class="badge badge-pill red"> @TempData["basketItems"]</span>
+                    <i class="fas fa-shopping-cart fa-1x mr-5 text-light"></i>
+                </a>
+            </li>
+            @if ((string)TempData["role"] == "Admin")
+            {
+                <li class="nav-item">
+                    <a class="nav-link waves-effect" asp-area="" asp-controller="Home" asp-action="Index">Administrator Panel</a>
+                </li>
+            }
+            <li class="nav-item">
+                <a href="#!" class="nav-link waves-effect">Contact</a>
+            </li>
+            @if (httpContextAcc.HttpContext.Session.GetString("JWToken") != null && httpContextAcc.HttpContext.Session.GetString("JWToken").ToString().Length > 0)
+            {
+                <li class="nav-item dropdown">
+
+                    <a href="#!" id="navbarDropdown" class="nav-link dropdown-toggle waves-effect" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Welcome @httpContextAcc.HttpContext.Session.GetString("User")
+                    </a>
+
+                    <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+                        @if ( (int)TempData["basketItems"] != 0)
+                        {
+                            <a class="dropdown-item nav-link drpdwn-item" asp-controller="Basket" asp-action="Index">
+                                <i class="fas fa-shopping-cart fa-1x mr-3"></i>
+                                View Basket
+                            </a>
+                        }
+                        <a class="dropdown-item nav-link drpdwn-item" asp-controller="Checkout" asp-action="GetAllOrdersForUser">
+                            <i class="fas fa-history fa-1x mr-3"></i>
+                            View Orders
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item nav-link drpdwn-item" asp-controller="Account" asp-action="Profile">
+                            <i class="far fa-user fa-1x mr-3"></i>
+                            Profile
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item nav-link drpdwn-item" asp-controller="Account" asp-action="Logout">
+                            <i class="fas fa-sign-out-alt fa-1x mr-3"></i>
+                            Logout
+                        </a>
+                    </div>
+                </li>
+
+            }
+            else
+            {
+                <li class="nav-item">
+                    <a asp-controller="Account" asp-action="Index" class="nav-link waves-effect">Login</a>
+                </li>
+                <li class="nav-item pl-2 mb-2 mb-md-0">
+                    <a asp-controller="Account" asp-action="UserRegister" type="button" class="btn btn-outline-info btn-md btn-rounded btn-navbar waves-effect waves-light">Sign up</a>
+                </li>
+            }
+
+
+        </ul>
+
+    </div>
+    <!-- Links -->
+
+</nav>
+<!-- Navbar -->
+@*@section Styles {
+        <link rel="stylesheet" href="~/css/navbar.css" />
+    }*@

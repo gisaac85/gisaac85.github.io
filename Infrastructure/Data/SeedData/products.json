@@ -1,0 +1,115 @@
+[
+  {
+    "Name": "Sport-FY0377",
+    "Description": "New sport shoes from Addidas",
+    "Price": 120,
+    "PictureUrl": "https://localhost:44325/images/products/image006.jpg",
+    "ProductTypeId": 1,
+    "ProductBrandId": 2
+  },
+  {
+    "Name": "Sport-DB0156",
+    "Description": "New sport shoes from Addidas",
+    "Price": 150,
+    "PictureUrl": "https://localhost:44325/images/products/image005.jpg",
+    "ProductTypeId": 1,
+    "ProductBrandId": 2
+  },
+  {
+    "Name": "SOFT TRAINERS",
+    "Description": "Zara trainers",
+    "Price": 90,
+    "PictureUrl": "https://localhost:44325/images/products/image004.jpg",
+    "ProductTypeId": 1,
+    "ProductBrandId": 1
+  },
+  {
+    "Name": "Sneakers",
+    "Description": "Mesh Sneakers",
+    "Price": 50,
+    "PictureUrl": "https://localhost:44325/images/products/image003.jpg",
+    "ProductTypeId": 1,
+    "ProductBrandId": 4
+  },
+  {
+    "Name": "Atlantis AT001",
+    "Description": "Atlantis AT001 - Start Five Cap",
+    "Price": 5,
+    "PictureUrl": "https://localhost:44325/images/products/image002.jpg",
+    "ProductTypeId": 2,
+    "ProductBrandId": 3
+  },
+  {
+    "Name": "KARL KANI",
+    "Description": "Signature Bucket Hat",
+    "Price": 4,
+    "PictureUrl": "https://localhost:44325/images/products/image001.jpg",
+    "ProductTypeId": 2,
+    "ProductBrandId": 4
+  },
+  {
+    "Name": "Flat Cap",
+    "Description": "Belfast Classic Wool Flat Cap",
+    "Price": 7,
+    "PictureUrl": "https://localhost:44325/images/products/image007.jpg",
+    "ProductTypeId": 2,
+    "ProductBrandId": 1
+  },
+  {
+    "Name": "Black Lace Boat",
+    "Description": "Black lace boat coarse sole",
+    "Price": 7,
+    "PictureUrl": "https://localhost:44325/images/products/image008.jpg",
+    "ProductTypeId": 3,
+    "ProductBrandId": 1
+  },
+  {
+    "Name": "Black Gloves",
+    "Description": "Black Gloves",
+    "Price": 7,
+    "PictureUrl": "https://localhost:44325/images/products/image009.jpg",
+    "ProductTypeId": 4,
+    "ProductBrandId": 1
+  },
+  {
+    "Name": "Black Rainy Jacket",
+    "Description": "Black Rainy Jackete",
+    "Price": 7,
+    "PictureUrl": "https://localhost:44325/images/products/image010.jpg",
+    "ProductTypeId": 6,
+    "ProductBrandId": 1
+  },
+  {
+    "Name": "Blue Pants",
+    "Description": "Blue Pants",
+    "Price": 7,
+    "PictureUrl": "https://localhost:44325/images/products/image011.jpg",
+    "ProductTypeId": 5,
+    "ProductBrandId": 1
+  },
+  {
+    "Name": "Oliy Winter Jacket",
+    "Description": "Oliy Winter Jacket",
+    "Price": 7,
+    "PictureUrl": "https://localhost:44325/images/products/image012.jpg",
+    "ProductTypeId": 6,
+    "ProductBrandId": 1
+  },
+  {
+    "Name": "Short Springy Jacket",
+    "Description": "Short Springy Jacket",
+    "Price": 7,
+    "PictureUrl": "https://localhost:44325/images/products/image013.jpg",
+    "ProductTypeId": 6,
+    "ProductBrandId": 1
+  },
+  {
+    "Name": "Black Sporty Pants",
+    "Description": "Black Sporty Pants",
+    "Price": 7,
+    "PictureUrl": "https://localhost:44325/images/products/image014.jpg",
+    "ProductTypeId": 5,
+    "ProductBrandId": 1
+  }
+
+]

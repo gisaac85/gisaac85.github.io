@@ -1,0 +1,10 @@
+﻿/*div.drpdwn-mn:hover {
+    color: black;
+    background-color: red !important;
+}
+*/
+a.drpdwn-item:hover, fa-shopping-cart:hover {
+    color: #343a40 !important;
+    font-weight: bold;
+    /*    background-color: red !important;*/
+}

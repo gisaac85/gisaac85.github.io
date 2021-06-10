@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Core.Entities.ProductModels.ProductBrand>
+
+<div class="float-left">
+    <nav id="sidebar">
+        <div class="p-2">
+            <ul id="pageSubmenu1" class="list-unstyled components mb-2" style="line-height: 35px;">
+                <li>
+                    @Html.ActionLink("All", "Index", "Products", null)
+                </li>
+                @foreach (var item in Model)
+                {
+                    <li>
+                        @Html.ActionLink(item.Name.ToString(), "FetchProductsByBrandName", "Products", new { brandId = item.Id },null)                             
+                    </li>
+                }
+            </ul>
+        </div>
+    </nav>
+</div>

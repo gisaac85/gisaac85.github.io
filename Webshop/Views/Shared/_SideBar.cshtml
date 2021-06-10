@@ -1,0 +1,22 @@
+﻿ <div class="float-left m-3 mt-2">
+        <div class="card mt-5">
+            <div class="card-header bg-secondary">
+                <h5 class="mb-0 text-white">                    
+                    Gategories                    
+                </h5>
+            </div>            
+            <div class="card-body">
+                @await Html.PartialAsync("/Views/Types/Index.cshtml", TempData["types"])
+            </div>            
+        </div>
+        <div class="card mt-5">
+            <div class="card-header bg-secondary">
+                <h5 class="mb-0 text-white">
+                    Brands
+                </h5>
+            </div>
+            <div class="card-body">
+                @await Html.PartialAsync("/Views/Brands/Index.cshtml", TempData["brands"])
+            </div>            
+        </div>
+    </div>

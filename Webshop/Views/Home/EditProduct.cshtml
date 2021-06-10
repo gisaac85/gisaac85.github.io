@@ -1,0 +1,74 @@
+﻿@using Core.Entities.ProductModels;
+
+@model Core.Dtos.ProductToReturnDto
+
+
+<div class="card mt-5">
+    <div class="card-header h4">
+        Edit Product
+    </div>
+
+    <div class="card-body">
+
+
+        <form method="post" asp-controller="Home" asp-action="EditProduct">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group row">
+                <label asp-for="Name" class="col-sm-3 col-form-label">Name</label>
+                <div class="col-sm-6">
+                    <input asp-for="Name" class="form-control form-control-sm" required />
+                </div>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group row">
+                <label asp-for="Description" class="col-sm-3 col-form-label">Description</label>
+                <div class="col-sm-6">
+                    <input asp-for="Description" class="form-control form-control-sm" required />
+                </div>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="form-group row">
+                <label asp-for="Price" class="col-sm-3 col-form-label">Price</label>
+                <div class="col-sm-6">
+                    <input asp-for="Price" class="form-control form-control-sm" required />
+                </div>
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+
+            <div class="form-group row">
+                <label asp-for="PictureUrl" class="col-sm-3 col-form-label">Price</label>
+                <div class="col-sm-6">
+                    <input asp-for="PictureUrl" class="form-control form-control-sm" required />
+                </div>
+                <span asp-validation-for="PictureUrl" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group row">
+                <label for="ProductTypeId" class="col-sm-3 col-form-label">Product Type</label>
+                <div class="col-sm-6">
+                    <select name="ProductTypeId" class="form-control form-control-sm" asp-items="ViewBag.productTypeSList" required></select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="ProductBrandId" class="col-sm-3 col-form-label">Product Brand</label>
+                <div class="col-sm-6">
+                    <select name="ProductBrandId" class="form-control form-control-sm" asp-items="ViewBag.productBrandSList" required></select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div class="pt-4">
+    <a asp-action="Index">Back to List</a>
+</div>
+

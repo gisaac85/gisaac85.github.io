@@ -1,0 +1,72 @@
+﻿@using Core.Entities.ProductModels;
+
+@model Core.Dtos.ProductToReturnDto
+
+
+<div class="card mt-5">
+    <div class="card-header h4">
+        Delete Product
+    </div>
+    
+    <div class="card-body">
+        <form class="p-2">
+            <div class="text-danger mb-3 font-weight-bold">
+                Are you sure you want to delete this product?
+            </div>
+       
+            <div class="form-group row">
+                <label asp-for="Name" class="col-sm-3 col-form-label">Name</label>
+                <div class="col-sm-6">
+                    @Html.DisplayFor(model => model.Name)
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label asp-for="Description" class="col-sm-3 col-form-label">Description</label>
+                <div class="col-sm-6">
+                    @Html.DisplayFor(model => model.Description)
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label asp-for="Price" class="col-sm-3 col-form-label">Price</label>
+                <div class="col-sm-6">
+                    @Html.DisplayFor(model => model.Price)
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label asp-for="PictureUrl" class="col-sm-3 col-form-label">Price</label>
+                <div class="col-sm-6">
+                    @Html.DisplayFor(model => model.PictureUrl)
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label for="ProductType" class="col-sm-3 col-form-label">Product Type</label>
+                <div class="col-sm-6">
+                    @Html.DisplayFor(model => model.ProductType)
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="ProductType" class="col-sm-3 col-form-label">Product Brand</label>
+                <div class="col-sm-6">
+                    @Html.DisplayFor(model => model.ProductBrand)
+                </div>
+            </div>
+        </form>
+        <form asp-action="DeleteProduct">
+            <input type="hidden" asp-for="Id" />
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            <a asp-action="Index">Back to List</a>
+        </form>
+
+    </div>
+</div>
+
+
+<div class="pt-4">
+    <a asp-action="Index">Back to List</a>
+</div>
+

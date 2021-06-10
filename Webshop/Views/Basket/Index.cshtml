@@ -1,0 +1,142 @@
+﻿@{
+    Layout = "_Layout";
+}
+@using Core.Dtos;
+@model Core.Entities.BasketModels.CustomerBasket;
+@{ 
+    decimal total = 0;
+    decimal subtotal = 0;
+    decimal allTotal = 0;
+}
+
+<br />
+<p class="lead"><h1>Basket</h1></p>
+<div class="container mt-2">
+    <div>
+        @if (Model.Items.Count == 0)
+        {
+          <p>There are no items in your basket</p>
+        }
+    </div>
+
+    <div>
+        <div class="pb-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 py-5 mb-1">
+                        <div class="table-responsive">
+                            <table class="table table-borderless">
+                                <thead class="border-0 py-2">
+                                    <tr>
+                                        <th scope="col">
+                                            <div class="p-2 px-3 text-uppercase">Product</div>
+                                        </th>
+                                        <th scope="col">
+                                            <div class="py-2 text-uppercase">Price</div>
+                                        </th>
+                                        <th scope="col">
+                                            <div class="py-2 text-uppercase">Quantity</div>
+                                        </th>
+                                        <th scope="col">
+                                            <div class="py-2 text-uppercase">Total</div>
+                                        </th>
+                                        <th scope="col" class="border-0">
+                                            <div class="py-2 text-uppercase">&nbsp;&nbsp;&nbsp;&nbsp;Remove</div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.Items)
+                                    {
+                                        <tr class="border-0">
+                                            <th scope="row">
+                                                <div class="p-0">
+                                                    <img src="@item.PictureUrl" alt="@item.ProductName"
+                                                         class="img-fluid" style="max-height: 50px;">
+                                                    <div class="ml-3 d-inline-block align-middle">
+                                                        <h5 class="mb-0">
+                                                            <a class="text-dark">@item.ProductName</a>
+                                                        </h5>
+                                                        <span class="text-muted font-weight-normal font-italic d-block">
+                                                            Type: @item.Type
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </th>
+                                            <td class="align-middle"><strong> @String.Format("{0:c2}", item.Price)</strong></td>
+                                            <td class="align-middle">
+                                                <div class="d-flex align-items-center">
+                                                    <a asp-controller="Basket" asp-action="DecrementItemQuantity" asp-route-id="@item.Id">
+                                                        <i class="fa fa-minus-circle text-warning mr-2"
+                                                           style="cursor: pointer; font-size: 2em;">
+                                                        </i>
+                                                        </a>
+
+                                                        <span class="font-weight-bold" style="font-size: 1.5em;">
+                                                            @item.Quantity
+                                                        </span>
+                                                        <a asp-controller="Basket" asp-action="IncrementItemQuantity" asp-route-id="@item.Id">
+                                                            <i class="fa fa-plus-circle text-warning mx-2"
+                                                               style="cursor: pointer; font-size: 2em;"></i>
+                                                        </a>
+                                                </div>
+                                            </td>
+                                            <td class="align-middle">
+                                                @{  total = item.Price * item.Quantity;}
+                                                <strong>@String.Format("{0:c2}", total)</strong>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <a class="text-danger" asp-controller="Basket" asp-action="RemoveItem" asp-route-id="@item.Id">                                                
+                                                    <i class="fa fa-trash" style="font-size: 2em; cursor: pointer;"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="bg-light px-4 text-uppercase font-weight-bold" style="padding: 1.20em;">
+                        Order Summary
+                    </div>
+                    <div class="p-4">
+                        <p class="font-italic mb-4">Shipping costs will be added depending on choices made during checkout</p>
+                        <ul class="list-unstyled mb-4">
+                            <li class="d-flex justify-content-between py-3 border-bottom">
+                                <strong class="text-muted">Order subtotal</strong>
+                                @{                                    
+                                    foreach (var pro in Model.Items)
+                                    {
+                                        subtotal = subtotal + pro.Price;
+                                        allTotal = subtotal;
+                                    }
+                                }
+                                <strong>@String.Format("{0:c2}", TempData["total"])</strong>
+                            </li>
+                            <li class="d-flex justify-content-between py-3 border-bottom">
+                                <strong class="text-muted">Shipping and handling</strong>
+                                <strong>@String.Format("{0:c2}", 0)</strong>
+                            </li>
+                            <li class="d-flex justify-content-between py-3 border-bottom">
+                                <strong class="text-muted">Total</strong>
+                                <strong>@String.Format("{0:c2}", TempData["total"])</strong>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @if (Model.Items.Count != 0)
+            {
+            <div class="col-6 offset-6">
+                <a class="btn btn-outline-primary py-2 btn-block" asp-controller="Checkout" asp-action="CheckoutBasket">
+                    Proceed to checkout
+                </a>
+            </div>
+            }
+        </div>
+    </div>
+</div>

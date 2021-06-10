@@ -1,0 +1,42 @@
+﻿@model Core.Dtos.OrderToReturnDto
+
+<div class="bg-light px-4 text-uppercase font-weight-bold" style="padding: 1.20em;">
+    <div><i class="fa fa-check-circle fa-5x" style="color: green;"></i></div>
+    <h2>Thank you. Your order is confirmed</h2>
+</div>
+<div class="p-4">
+    <table class="table table-striped table-dark text-center text-white-50">
+        <thead class="text-info">
+            <tr>
+                <th>Order Date</th>
+                <th>Sub Total</th>
+                <th>Delivery Method</th>
+                <th>Shipping Price</th>
+                <th>Items</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.OrderDate</td>
+                <td>@String.Format("{0:c2}", Model.Subtotal)</td>
+                <td>@Model.DeliveryMethod</td>
+                <td>@String.Format("{0:c2}", Model.ShippingPrice)</td>
+                @foreach (var prod in Model.OrderItems)
+                {
+                    <td class="d-flex justify-content-between py-3">
+                        <img src="@prod.PictureUrl" alt="@prod.ProductName"
+                             class="img-fluid" style="max-height: 50px; max-width:50px">
+                        <div class="ml-3 d-inline-block align-middle">
+                            <h5 class="mb-0">
+                                <a class="text-dark text-white-50">@prod.ProductName</a>
+                            </h5>
+                            <span class="text-muted font-weight-normal font-italic d-block text-white-50">
+                                Price: @String.Format("{0:c2}", prod.Price) - Quantity: @prod.Quantity
+                            </span>
+                        </div>
+                    </td>
+                }
+            </tr>
+        </tbody>
+    </table>
+</div>
